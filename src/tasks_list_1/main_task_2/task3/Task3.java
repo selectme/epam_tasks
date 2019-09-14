@@ -9,7 +9,7 @@ public class Task3 {
     }
 
     /* First */
-    private static void checkLetterForVowel(char c) {
+    private static void checkLetterForVowelFirst(char c) {
         if (c == 'A' || c == 'a') {
             System.out.println("Vowel");
         } else if (c == 'E' || c == 'e') {
