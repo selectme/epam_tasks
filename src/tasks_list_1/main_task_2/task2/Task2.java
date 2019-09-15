@@ -5,7 +5,7 @@ package tasks_list_1.main_task_2.task2;
  */
 public class Task2 {
     public static void main(String[] args) {
-        findDragonHeads(785);
+        findDragonHeads(1);
     }
 
     public static void findDragonHeads(int age) {

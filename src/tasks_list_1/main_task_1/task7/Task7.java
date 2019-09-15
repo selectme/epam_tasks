@@ -13,9 +13,13 @@ public class Task7 {
         System.out.println("a = " + a);
         System.out.println("b = " + b);
 
-        a = a + b;
-        b = a - b;
-        a = a - b;
+        if (a == b) {
+            System.out.println("Nums are equal");
+        } else {
+            a = a + b;
+            b = a - b;
+            a = a - b;
+        }
 
         System.out.println("After changing: ");
         System.out.println("a = " + a);
