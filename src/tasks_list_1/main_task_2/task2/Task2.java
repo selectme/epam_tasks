@@ -22,7 +22,6 @@ public class Task2 {
                 }
             }
         }
-
         int eyes = sumHeads * 2;
         System.out.println("Dragon has " + sumHeads + " heads and " + eyes + " eyes.");
     }
