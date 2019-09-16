@@ -21,6 +21,8 @@ public class Task2 {
                     sumHeads = sumHeads + (200 * 3) + (100 * 2) + (age - 300);
                 }
             }
+        } else {
+            System.out.println("Dragon is less than a year old");
         }
         int eyes = sumHeads * 2;
         System.out.println("Dragon has " + sumHeads + " heads and " + eyes + " eyes.");
