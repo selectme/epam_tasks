@@ -23,19 +23,19 @@ public class Task4 {
                 if (c <= d) {
                     System.out.println("Increasing sequence");
                 } else {
-                    System.out.println("Just sequence of numbers");
+                    System.out.println("Just a sequence of numbers");
                 }
             } else {
-                System.out.println("Just sequence of numbers");
+                System.out.println("Just a sequence of numbers");
             }
         } else if (b >= c) {
             if (c >= d) {
                 System.out.println("Descending sequence");
             } else {
-                System.out.println("Just sequence of numbers");
+                System.out.println("Just a sequence of numbers");
             }
         } else {
-            System.out.println("Just sequence of numbers");
+            System.out.println("Just a sequence of numbers");
         }
     }
 
