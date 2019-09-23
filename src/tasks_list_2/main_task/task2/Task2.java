@@ -13,9 +13,11 @@ public class Task2 {
 
     private static int findTheGreatestNumOfDigit(int num) {
         int greatestNum = 0;
+        int digit;
         while (num > 0) {
-            if (num % 10 > greatestNum) {
-                greatestNum = num % 10;
+            digit = num % 10;
+            if (digit > greatestNum) {
+                greatestNum = digit;
             }
             num /= 10;
         }
@@ -40,7 +42,7 @@ public class Task2 {
 
     private static boolean checkIsSimpleNumber(int num) {
         int divisorCounter = 0;
-        for (int i = 1; i <= num/2; i++) {
+        for (int i = 1; i <= num / 2; i++) {
             if (num % i == 0) {
                 divisorCounter++;
                 if (divisorCounter > 1) {
