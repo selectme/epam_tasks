@@ -11,13 +11,13 @@ public class Task2 {
         System.out.println(checkIsSimpleNumber(7));
     }
 
-    private static int findTheGreatestNumOfDigit(int digit) {
+    private static int findTheGreatestNumOfDigit(int num) {
         int greatestNum = 0;
-        while (digit > 0) {
-            if (digit % 10 > greatestNum) {
-                greatestNum = digit % 10;
+        while (num > 0) {
+            if (num % 10 > greatestNum) {
+                greatestNum = num % 10;
             }
-            digit /= 10;
+            num /= 10;
         }
         return greatestNum;
     }
