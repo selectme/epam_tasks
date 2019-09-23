@@ -8,9 +8,10 @@ import java.util.Scanner;
 public class Task2 {
 
     public static void main(String[] args) {
-        System.out.println(checkIsSimpleNumber(7));
+        findSimpleDivisorsOfNumber(inputNumber());
     }
 
+    //найти наибольшую цифру натурального числа;
     private static int findTheGreatestNumOfDigit(int num) {
         int greatestNum = 0;
         int digit;
@@ -24,6 +25,7 @@ public class Task2 {
         return greatestNum;
     }
 
+    //    проверить, является ли заданное натуральное число палиндромом;
     private static boolean checkIsPalindrome(int num) {
         int palindrome = num;
         int reverse = 0;
@@ -40,21 +42,27 @@ public class Task2 {
         }
     }
 
+    //    определить является ли заданное натуральное число простым;
     private static boolean checkIsSimpleNumber(int num) {
         int divisorCounter = 0;
-        for (int i = 1; i <= num / 2; i++) {
-            if (num % i == 0) {
-                divisorCounter++;
-                if (divisorCounter > 1) {
-                    return false;
+        if (num > 1) {
+            for (int i = 2; i <= num / 2; i++) {
+                if (num % i == 0) {
+                    divisorCounter++;
+                    if (divisorCounter > 0) {
+                        return false;
+                    }
                 }
             }
+        } else {
+            return false;
         }
         return true;
     }
 
+    //    найти все простые делители заданного натурального числа;
     private static void findSimpleDivisorsOfNumber(int num) {
-        for (int i = 1; i <= num; i++) {
+        for (int i = 2; i <= num / 2; i++) {
             if (num % i == 0) {
                 if (checkIsSimpleNumber(i)) {
                     System.out.println(i);
@@ -63,6 +71,7 @@ public class Task2 {
         }
     }
 
+    //найти НОД двух натуральных чисел a и b.
     private static int findGreatestCommonDivisor(int a, int b) {
         int greatestCommonDivisor = 1;
         int counter;
@@ -84,12 +93,14 @@ public class Task2 {
         return greatestCommonDivisor;
     }
 
+    //найти НОК двух натуральных чисел a и b.
     private static int findLeastCommonMultiple() {
         int a = inputNumber();
         int b = inputNumber();
         return (a * b) / findGreatestCommonDivisor(a, b);
     }
 
+    //найти количество различных цифр у заданного натурального числа.
     private static int findDifferentDigitsOfNumber(int num) {
         int digit;
         int tempDigit;
@@ -111,7 +122,6 @@ public class Task2 {
                 counterDiffDigits++;
             }
             num /= 10;
-
         }
         return counterDiffDigits;
     }

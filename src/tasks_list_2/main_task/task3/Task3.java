@@ -5,6 +5,7 @@ import java.util.Scanner;
 /**
  * @author Viktar on 20.09.2019
  */
+//проверка числа на натуральное
 public class Task3 {
     public static void main(String[] args) {
         System.out.println(checkIsPerfectNumber(inputNumber()));
@@ -12,10 +13,9 @@ public class Task3 {
 
     private static boolean checkIsPerfectNumber(int num) {
         int sum = 0;
-        for (int i = 1; i <= num/2; i++) {
+        for (int i = 1; i <= num / 2; i++) {
             if (num % i == 0) {
                 sum += i;
-                System.out.println(i);
             }
         }
         if (sum == num) {

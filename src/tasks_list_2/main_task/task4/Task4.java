@@ -10,7 +10,7 @@ public class Task4 {
         System.out.println(findSumOfDivisors(220));
     }
 
-    private static void checkIsFriendlyNumber(){
+    private static void checkIsFriendlyNumber() {
         System.out.println("Enter range of number: ");
         System.out.println("Min: ");
         int min = inputNumber();
@@ -20,20 +20,20 @@ public class Task4 {
         int sumOfDivisors2 = 0;
         for (int i = min; i <= max; i++) {
             sumOfDivisors1 = findSumOfDivisors(i);
-            for (int j = i+1; j <= max; j++) {
+            for (int j = i + 1; j <= max; j++) {
                 sumOfDivisors2 = findSumOfDivisors(j);
-                if (sumOfDivisors1 == j && sumOfDivisors2 == i){
+                if (sumOfDivisors1 == j && sumOfDivisors2 == i) {
                     System.out.println(i + " " + j);
                 }
             }
         }
     }
 
-    private static int findSumOfDivisors(int num){
+    private static int findSumOfDivisors(int num) {
         int sumOfDivisors = 0;
-        for (int i = 1; i <= num/2; i++) {
-            if(num % i == 0){
-                sumOfDivisors+=i;
+        for (int i = 1; i <= num / 2; i++) {
+            if (num % i == 0) {
+                sumOfDivisors += i;
             }
         }
         return sumOfDivisors;
