@@ -35,11 +35,7 @@ public class Task2 {
             reverse = reverse * 10 + digit;
             palindrome /= 10;
         }
-        if (num == reverse) {
-            return true;
-        } else {
-            return false;
-        }
+        return num == reverse;
     }
 
     //    определить является ли заданное натуральное число простым;
