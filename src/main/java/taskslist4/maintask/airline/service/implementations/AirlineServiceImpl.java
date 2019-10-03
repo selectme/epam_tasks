@@ -10,9 +10,7 @@ import taskslist4.maintask.airline.service.AirlineService;
 
 import java.io.File;
 import java.io.FileNotFoundException;
-import java.util.Arrays;
-import java.util.Comparator;
-import java.util.Scanner;
+import java.util.*;
 
 /**
  * @author Viktar on 30.09.2019
@@ -25,7 +23,7 @@ public class AirlineServiceImpl implements AirlineService {
      * @param filePath path to the airplanes list
      * @return array of {@link Airplane}
      */
-    public Airplane[] createAirplanesList(String filePath) {
+    public List<Airplane> createAirplanesList(String filePath) {
         Scanner input = fileInput(filePath);
 
         String sideNumber;
@@ -43,8 +41,7 @@ public class AirlineServiceImpl implements AirlineService {
 
         input.nextLine();
 
-        Airplane[] airplanes = new Airplane[getAirplanesQuantity(filePath)];
-        int arrayPosition = 0;
+        List<Airplane> airplanes = new ArrayList<>();
         while (input.hasNextLine()) {
 
             String[] characteristics = input.nextLine().split("\\|");
@@ -136,11 +133,11 @@ public class AirlineServiceImpl implements AirlineService {
             }
 
             if (airplaneType == AirplaneType.CARGO) {
-                airplanes[arrayPosition] = new CargoAirplane(sideNumber, manufacturer, maxSpeed, maxAltitude, model, airplaneType, crew, maxFlightRange, fuelSupply, fuelConsumption, cargoCapacity);
+                airplanes.add(new CargoAirplane(sideNumber, manufacturer, maxSpeed, maxAltitude, model, airplaneType, crew, maxFlightRange, fuelSupply, fuelConsumption, cargoCapacity));
             } else {
-                airplanes[arrayPosition] = new PassengerAirplane(sideNumber, manufacturer, maxSpeed, maxAltitude, model, airplaneType, crew, maxFlightRange, fuelSupply, fuelConsumption, passengers);
+                airplanes.add(new PassengerAirplane(sideNumber, manufacturer, maxSpeed, maxAltitude, model, airplaneType, crew, maxFlightRange, fuelSupply, fuelConsumption, passengers));
             }
-            arrayPosition++;
+
         }
         return airplanes;
     }
@@ -151,7 +148,7 @@ public class AirlineServiceImpl implements AirlineService {
      * @param airplanes array of{@link Airplane}
      * @return quantity of passengers and crew of all airplanes
      */
-    public int findTotalAirplanesCapacity(Airplane[] airplanes) {
+    public int findTotalAirplanesCapacity(List<Airplane> airplanes) {
         return findTotalPassengersCapacity(airplanes) + findTotalCrewCapacity(airplanes);
     }
 
@@ -161,7 +158,7 @@ public class AirlineServiceImpl implements AirlineService {
      * @param airplanes array of {@link Airplane}
      * @return total passengers capacity of all airplanes
      */
-    public int findTotalPassengersCapacity(Airplane[] airplanes) {
+    public int findTotalPassengersCapacity(List<Airplane> airplanes) {
 
         int sumOfPassengers = 0;
         for (Airplane airplane : airplanes) {
@@ -178,7 +175,7 @@ public class AirlineServiceImpl implements AirlineService {
      * @param airplanes array of {@link Airplane}
      * @return total quantity of crew from all airplanes
      */
-    public int findTotalCrewCapacity(Airplane[] airplanes) {
+    public int findTotalCrewCapacity(List<Airplane> airplanes) {
         int sumOfCrews = 0;
         for (Airplane airplane : airplanes) {
             sumOfCrews += airplane.getCrewQuantity();
@@ -192,7 +189,7 @@ public class AirlineServiceImpl implements AirlineService {
      * @param airplanes array of {@link Airplane}
      * @return total carrying capacity of all airplanes
      */
-    public int findTotalAirplanesCarryingCapacity(Airplane[] airplanes) {
+    public int findTotalAirplanesCarryingCapacity(List<Airplane> airplanes) {
         int carryingSum = 0;
         for (Airplane airplane : airplanes) {
             if (airplane instanceof CargoAirplane) {
@@ -242,9 +239,9 @@ public class AirlineServiceImpl implements AirlineService {
      *
      * @param airplanes array of{@link Airplane}
      */
-    public void sortByPassengersAndCrewCapacity(Airplane[] airplanes) {
+    public void sortByPassengersAndCrewCapacity(List<Airplane> airplanes) {
         Comparator<Airplane> comparator = new AirplanePassengersCapacityComparator().thenComparing(new AirplaneCrewCapacityComparator());
-        Arrays.sort(airplanes, comparator);
+        airplanes.sort(comparator);
         for (Airplane airplane : airplanes) {
             System.out.println(airplane);
         }
@@ -255,9 +252,9 @@ public class AirlineServiceImpl implements AirlineService {
      *
      * @param airplanes array of {@link Airplane}
      */
-    public void sortByPassengersCapacity(Airplane[] airplanes) {
+    public void sortByPassengersCapacity(List<Airplane> airplanes) {
         Comparator<Airplane> comparator = new AirplanePassengersCapacityComparator();
-        Arrays.sort(airplanes, comparator);
+        airplanes.sort(comparator);
         for (Airplane airplane : airplanes) {
             System.out.println(airplane);
         }
@@ -268,9 +265,9 @@ public class AirlineServiceImpl implements AirlineService {
      *
      * @param airplanes array of{@link Airplane}
      */
-    public void sortByCrewCapacity(Airplane[] airplanes) {
+    public void sortByCrewCapacity(List<Airplane> airplanes) {
         Comparator<Airplane> comparator = new AirplaneCrewCapacityComparator();
-        Arrays.sort(airplanes, comparator);
+        airplanes.sort(comparator);
         for (Airplane airplane : airplanes) {
             System.out.println(airplane);
         }
@@ -284,8 +281,8 @@ public class AirlineServiceImpl implements AirlineService {
      * @param rangeTo   max value of fuel consumption
      * @return the most economical airplane suitable of given parameters
      */
-    public Airplane findPlaneByFuelConsumptionRange(Airplane[] airplanes, int rangeFrom, int rangeTo) {
-        Airplane theMostEconomicalPlane = airplanes[0];
+    public Airplane findPlaneByFuelConsumptionRange(List<Airplane> airplanes, int rangeFrom, int rangeTo) {
+        Airplane theMostEconomicalPlane = airplanes.get(0);
         for (Airplane airplane : airplanes) {
             if ((airplane.getFuelConsumption() >= rangeFrom) && (airplane.getFuelConsumption() <= rangeTo)) {
                 if (theMostEconomicalPlane.getFuelConsumption() > airplane.getFuelConsumption()) {

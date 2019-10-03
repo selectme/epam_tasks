@@ -3,6 +3,8 @@ package taskslist4.maintask.airline;
 import taskslist4.maintask.airline.models.Airplane;
 import taskslist4.maintask.airline.service.implementations.AirlineServiceImpl;
 
+import java.util.List;
+
 /**
  * @author Viktar on 29.09.2019
  */
@@ -11,9 +13,8 @@ public class Main {
 
     public static void main(String[] args) {
         AirlineServiceImpl service = new AirlineServiceImpl();
-        Airplane[] airplanes = service.createAirplanesList(FILE_PATH);
-        for(Airplane airplane : airplanes){
-            System.out.println(airplane);
-        }
+        List<Airplane> airplanes = service.createAirplanesList(FILE_PATH);
+        System.out.println(service.findTotalPassengersCapacity(airplanes));
+
     }
 }
