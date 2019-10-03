@@ -9,7 +9,7 @@ import java.util.List;
  * @author Viktar on 29.09.2019
  */
 public class Main {
-    private static final String FILE_PATH = "E:/result.txt";
+    private static final String FILE_PATH = "src/main/java/taskslist4/maintask/airline/airplanes.txt";
 
     public static void main(String[] args) {
         AirlineServiceImpl service = new AirlineServiceImpl();

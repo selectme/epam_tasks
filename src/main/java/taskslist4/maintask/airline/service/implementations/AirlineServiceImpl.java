@@ -24,6 +24,7 @@ public class AirlineServiceImpl implements AirlineService {
      * @return array of {@link Airplane}
      */
     public List<Airplane> createAirplanesList(String filePath) {
+
         Scanner input = fileInput(filePath);
 
         String sideNumber;
