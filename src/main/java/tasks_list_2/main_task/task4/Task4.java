@@ -7,7 +7,7 @@ import java.util.Scanner;
  */
 public class Task4 {
     public static void main(String[] args) {
-        System.out.println(findSumOfDivisors(220));
+       checkIsFriendlyNumber();
     }
 
     private static void checkIsFriendlyNumber() {
@@ -19,10 +19,10 @@ public class Task4 {
         int sumOfDivisors1 = 0;
         int sumOfDivisors2 = 0;
         for (int i = min; i <= max; i++) {
-            sumOfDivisors1 = findSumOfDivisors(i);
+//            sumOfDivisors1 = findSumOfDivisors(i);
             for (int j = i + 1; j <= max; j++) {
-                sumOfDivisors2 = findSumOfDivisors(j);
-                if (sumOfDivisors1 == j && sumOfDivisors2 == i) {
+//                sumOfDivisors2 = findSumOfDivisors(j);
+                if ((findSumOfDivisors(i) == j) && (findSumOfDivisors(j)) == i) {
                     System.out.println(i + " " + j);
                 }
             }

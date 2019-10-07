@@ -8,7 +8,7 @@ public class Main {
         ArrayService arrayService = new ArrayService();
 
         int[][] arr = arrayService.arrayInitializator();
-//        int[][] arr = {{7, 10, 11, 1}, {5, 6, 7, 8}, {12, 2, 3, 4}};
+//        int[][] arr = {{7, 10, 1, 9}, {5, 6, 7, 8}, {12, 4, 3 , 5}};
 
         arrayService.printMatrix(arr);
 
