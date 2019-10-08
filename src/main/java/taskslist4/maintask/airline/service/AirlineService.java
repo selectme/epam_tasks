@@ -1,6 +1,6 @@
 package taskslist4.maintask.airline.service;
 
-import taskslist4.maintask.airline.models.Airplane;
+import taskslist4.maintask.airline.model.Airplane;
 
 import java.util.List;
 
@@ -9,9 +9,9 @@ import java.util.List;
  */
 public interface AirlineService {
 
-    List<Airplane> createAirplanesList(String filePath);
+    List<Airplane> createAirplanesList(String filename);
 
-    int getAirplanesQuantity(String filePath);
+    int getAirplanesQuantity(String filename);
 
     int findTotalAirplanesCapacity(List<Airplane> airplanes);
 

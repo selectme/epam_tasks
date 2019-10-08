@@ -1,11 +1,34 @@
-package taskslist4.maintask.airline.models;
+package taskslist4.maintask.airline.model;
+
+import java.util.Objects;
 
 /**
+ * Model object that represents a passenger airplane.
+ *
  * @author Viktar on 30.09.2019
+ * @see Airplane
  */
 public class PassengerAirplane extends Airplane {
+    /**
+     * Max passengers capacity on an airplane
+     */
     private int maxPassengers;
 
+    /**
+     * New instance.
+     *
+     * @param sideNumber      side number of an airplane
+     * @param manufacturer    brand of an airplane
+     * @param maxSpeed        max speed of an airplane, km per hour
+     * @param maxAltitude     max altitude of airplane, meters
+     * @param model           model of airplane
+     * @param airplaneType    {@link AirplaneType}
+     * @param crewQuantity    crew quantity of an airplane
+     * @param maxFlightRange  max flight distance of an airplane, km
+     * @param fuelSupply      fuel supply or tank capacity of an airplane, ton
+     * @param fuelConsumption fuel consumption of an airplane, kg per hour
+     * @param maxPassengers   max passengers capacity of an airplane
+     */
     public PassengerAirplane(String sideNumber, String manufacturer, int maxSpeed, int maxAltitude, String model,
                              AirplaneType airplaneType, int crewQuantity, int maxFlightRange, int fuelSupply, double fuelConsumption, int maxPassengers) {
         super(sideNumber, manufacturer, maxSpeed, maxAltitude, model, airplaneType, crewQuantity, maxFlightRange, fuelSupply, fuelConsumption);
@@ -18,6 +41,19 @@ public class PassengerAirplane extends Airplane {
 
     public void setMaxPassengers(int maxPassengers) {
         this.maxPassengers = maxPassengers;
+    }
+
+    @Override
+    public boolean equals(Object o) {
+        if (this == o) return true;
+        if (o == null || getClass() != o.getClass()) return false;
+        PassengerAirplane that = (PassengerAirplane) o;
+        return maxPassengers == that.maxPassengers;
+    }
+
+    @Override
+    public int hashCode() {
+        return Objects.hash(maxPassengers);
     }
 
     @Override

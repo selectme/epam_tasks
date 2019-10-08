@@ -1,15 +1,16 @@
-package taskslist4.maintask.airline.service.implementations;
+package taskslist4.maintask.airline.service.impl;
 
-import taskslist4.maintask.airline.models.Airplane;
-import taskslist4.maintask.airline.models.AirplaneType;
-import taskslist4.maintask.airline.models.CargoAirplane;
-import taskslist4.maintask.airline.models.PassengerAirplane;
-import taskslist4.maintask.airline.comparators.AirplaneCrewCapacityComparator;
-import taskslist4.maintask.airline.comparators.AirplanePassengersCapacityComparator;
+import taskslist4.maintask.airline.model.Airplane;
+import taskslist4.maintask.airline.model.AirplaneType;
+import taskslist4.maintask.airline.model.CargoAirplane;
+import taskslist4.maintask.airline.model.PassengerAirplane;
+import taskslist4.maintask.airline.comparator.AirplaneCrewCapacityComparator;
+import taskslist4.maintask.airline.comparator.AirplanePassengersCapacityComparator;
 import taskslist4.maintask.airline.service.AirlineService;
 
 import java.io.File;
 import java.io.FileNotFoundException;
+import java.net.URL;
 import java.util.*;
 
 /**
@@ -20,17 +21,17 @@ public class AirlineServiceImpl implements AirlineService {
     /**
      * Creates array of {@link Airplane}  from a list of airplanes
      *
-     * @param filePath path to the airplanes list
+     * @param filename fle which contains a list of airplanes
      * @return array of {@link Airplane}
      */
-    public List<Airplane> createAirplanesList(String filePath) {
+    public List<Airplane> createAirplanesList(String filename) {
 
-        Scanner input = fileInput(filePath);
+        Scanner input = fileInput(filename);
 
         String sideNumber;
         String manufacturer;
         String model;
-        AirplaneType airplaneType;
+        AirplaneType airplaneType = null;
         int crew;
         int passengers;
         int maxSpeed;
@@ -40,12 +41,18 @@ public class AirlineServiceImpl implements AirlineService {
         double fuelConsumption;
         int cargoCapacity;
 
-        input.nextLine();
+        try {
+            input.nextLine();
+        } catch (NoSuchElementException e) {
+            System.out.println("File is empty");
+        }
 
         List<Airplane> airplanes = new ArrayList<>();
+
         while (input.hasNextLine()) {
 
             String[] characteristics = input.nextLine().split("\\|");
+
             sideNumber = characteristics[0].trim();
             manufacturer = characteristics[1].trim();
             model = characteristics[2].trim();
@@ -53,8 +60,7 @@ public class AirlineServiceImpl implements AirlineService {
             try {
                 airplaneType = AirplaneType.valueOf(characteristics[3].trim().toUpperCase());
             } catch (IllegalArgumentException e) {
-                System.out.println("ERROR! Airplane " + sideNumber + " must be only Passenger or Cargo. Check your airplanes list");
-                continue;
+                throw new IllegalArgumentException("ERROR! Airplane " + sideNumber + " must be only Passenger or Cargo. Check your airplanes list ", e);
             }
 
             try {
@@ -124,7 +130,7 @@ public class AirlineServiceImpl implements AirlineService {
 
             try {
                 cargoCapacity = Integer.parseInt(characteristics[11].trim());
-                if ((airplaneType == AirplaneType.PASSENGER) && ((cargoCapacity > 0) || (cargoCapacity < 0))) {
+                if ((airplaneType == AirplaneType.PASSENGER) && (((cargoCapacity > 0) || (cargoCapacity < 0)))) {
                     throw new IllegalArgumentException("Error! Passenger airplane does not carry cargo. Check the airplane number " + sideNumber);
                 } else if (cargoCapacity < 0) {
                     throw new IllegalArgumentException("ERROR! Cargo capacity can't negative it must be a natural number. Check the airplane number " + sideNumber);
@@ -204,11 +210,16 @@ public class AirlineServiceImpl implements AirlineService {
     /**
      * Checks if text file exists
      *
-     * @param filePath path to text file
+     * @param filename file which contains a list of airplanes
      * @return Scanner
      */
-    public Scanner fileInput(String filePath) {
-        File file = new File(filePath);
+    private Scanner fileInput(String filename) {
+        ClassLoader classLoader = getClass().getClassLoader();
+        URL path = classLoader.getResource(filename);
+        File file = null;
+        if (path != null) {
+            file = new File(path.getFile());
+        }
         Scanner input = null;
         try {
             input = new Scanner(file);
@@ -221,11 +232,11 @@ public class AirlineServiceImpl implements AirlineService {
     /**
      * Gets quantity of airplanes from the airplanes text file
      *
-     * @param filePath path to text file
+     * @param filename file which contains a list of airplanes
      * @return quantity of airplanes
      */
-    public int getAirplanesQuantity(String filePath) {
-        Scanner scanner = fileInput(filePath);
+    public int getAirplanesQuantity(String filename) {
+        Scanner scanner = fileInput(filename);
         int airplanesCounter = 0;
         scanner.nextLine();
         while (scanner.hasNextLine()) {

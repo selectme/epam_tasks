@@ -1,13 +1,31 @@
-package taskslist4.maintask.airline.models;
+package taskslist4.maintask.airline.model;
 
 /**
+ * Model object that represents an aircraft
+ *
  * @author Viktar on 30.09.2019
  */
 public abstract class Aircraft {
+    /**
+     * Manufacturer of an aircraft.
+     */
     private String manufacturer;
+    /**
+     * Max speed of an aircraft.
+     */
     private int maxSpeed;
+    /**
+     * Max altitude of an aircraft
+     */
     private int maxAltitude;
 
+    /**
+     * New instance.
+     *
+     * @param manufacturer Manufacturer of an aircraft
+     * @param maxSpeed     Max speed of an aircraft
+     * @param maxAltitude  Max altitude of an aircraft
+     */
     public Aircraft(String manufacturer, int maxSpeed, int maxAltitude) {
         this.manufacturer = manufacturer;
         this.maxSpeed = maxSpeed;

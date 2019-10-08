@@ -1,0 +1,2 @@
+Side number| Brand      |Model|   Type  |Crew |  Passengers|Max speed, km/h|Max altitude, m|Max flight range,km|Fuel supply,t|Fuel consumption,kg/h|   Cargo capacity,t|
+    GH12   |  Sukhoi    |C4312|PASSENGER    | -2   |    0       |     850       |    10000      |       5000        |    245      |       170           |       220         |

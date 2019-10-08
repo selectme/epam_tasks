@@ -1,6 +1,6 @@
-package taskslist4.maintask.airline.comparators;
+package taskslist4.maintask.airline.comparator;
 
-import taskslist4.maintask.airline.models.Airplane;
+import taskslist4.maintask.airline.model.Airplane;
 
 import java.util.Comparator;
 

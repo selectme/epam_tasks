@@ -1,7 +1,7 @@
 package taskslist4.maintask.airline;
 
-import taskslist4.maintask.airline.models.Airplane;
-import taskslist4.maintask.airline.service.implementations.AirlineServiceImpl;
+import taskslist4.maintask.airline.model.Airplane;
+import taskslist4.maintask.airline.service.impl.AirlineServiceImpl;
 
 import java.util.List;
 
@@ -9,12 +9,12 @@ import java.util.List;
  * @author Viktar on 29.09.2019
  */
 public class Main {
-    private static final String FILE_PATH = "src/main/java/taskslist4/maintask/airline/airplanes.txt";
+    private static final String FILENAME = "airplanes.txt";
 
     public static void main(String[] args) {
         AirlineServiceImpl service = new AirlineServiceImpl();
-        List<Airplane> airplanes = service.createAirplanesList(FILE_PATH);
-        System.out.println(service.findTotalPassengersCapacity(airplanes));
+        List<Airplane> airplanes = service.createAirplanesList("airplanes.txt");
+
 
     }
 }

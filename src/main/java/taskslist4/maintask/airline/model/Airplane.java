@@ -1,29 +1,54 @@
-package taskslist4.maintask.airline.models;
+package taskslist4.maintask.airline.model;
 
 /**
+ * Model object that represents an airplane.
+ *
  * @author Viktar on 29.09.2019
+ * @see Aircraft
  */
 public abstract class Airplane extends Aircraft {
 
+    /**
+     * Side number of an airplane.
+     */
     private String sideNumber;
+    /**
+     * Model of an airplane.
+     */
     private String model;
+    /**
+     * An airplane type;
+     */
     private AirplaneType airplaneType;
+    /**
+     * Quantity of crew on an airplane
+     */
     private int crewQuantity;
+    /**
+     * Max range of flight
+     */
     private int maxFlightRange;
+    /**
+     * Fuel supply on an airplane
+     */
     private int fuelSupply;
+    /**
+     * Fuel consumption on an airplane
+     */
     private double fuelConsumption;
 
     /**
+     * New instance.
      *
-     * @param sideNumber side number of an airplane
-     * @param manufacturer brand of an airplane
-     * @param maxSpeed max speed of an airplane, km per hour
-     * @param maxAltitude max altitude of airplane, meters
-     * @param model model of airplane
-     * @param airplaneType {@link AirplaneType}
-     * @param crewQuantity crew quantity of an airplane
-     * @param maxFlightRange max flight distance of an airplane, km
-     * @param fuelSupply fuel supply or tank capacity of an airplane, ton
+     * @param sideNumber      side number of an airplane
+     * @param manufacturer    brand of an airplane
+     * @param maxSpeed        max speed of an airplane, km per hour
+     * @param maxAltitude     max altitude of airplane, meters
+     * @param model           model of airplane
+     * @param airplaneType    {@link AirplaneType}
+     * @param crewQuantity    crew quantity of an airplane
+     * @param maxFlightRange  max flight distance of an airplane, km
+     * @param fuelSupply      fuel supply or tank capacity of an airplane, ton
      * @param fuelConsumption fuel consumption of an airplane, kg per hour
      */
     public Airplane(String sideNumber, String manufacturer, int maxSpeed, int maxAltitude, String model,
