@@ -102,4 +102,10 @@ public class AirlineServiceImplTest {
         int total = airlineService.findTotalAirplanesCarryingCapacity(airlineService.createAirplanesList(RIGHT_DATA));
         assertEquals(440, total);
     }
+
+    @Test
+    public void findPlaneByFuelConsumptionRange() {
+        Airplane airplane = airlineService.findPlaneByFuelConsumptionRange(airlineService.createAirplanesList(RIGHT_DATA), 100, 200);
+        assertEquals(airplane.getFuelConsumption(), 120.0, 0.01);
+    }
 }

@@ -14,6 +14,9 @@ public class Main {
     public static void main(String[] args) {
         AirlineServiceImpl service = new AirlineServiceImpl();
         List<Airplane> airplanes = service.createAirplanesList("airplanes.txt");
+        System.out.println(service.findPlaneByFuelConsumptionRange(airplanes, 0, 1));
+
+        String s = "123";
 
 
     }

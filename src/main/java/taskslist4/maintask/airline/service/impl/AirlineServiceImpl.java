@@ -294,14 +294,22 @@ public class AirlineServiceImpl implements AirlineService {
      * @return the most economical airplane suitable of given parameters
      */
     public Airplane findPlaneByFuelConsumptionRange(List<Airplane> airplanes, int rangeFrom, int rangeTo) {
+        if ((rangeTo < 0) || (rangeFrom < 0) || (rangeTo - rangeFrom < 0)) {
+            throw new IllegalArgumentException("Range can't be negative");
+        }
+
         Airplane theMostEconomicalPlane = airplanes.get(0);
-        for (Airplane airplane : airplanes) {
-            if ((airplane.getFuelConsumption() >= rangeFrom) && (airplane.getFuelConsumption() <= rangeTo)) {
-                if (theMostEconomicalPlane.getFuelConsumption() > airplane.getFuelConsumption()) {
-                    theMostEconomicalPlane = airplane;
+        if ((theMostEconomicalPlane.getFuelConsumption() >= rangeFrom) && (theMostEconomicalPlane.getFuelConsumption() <= rangeTo)) {
+            for (Airplane airplane : airplanes) {
+                if ((airplane.getFuelConsumption() >= rangeFrom) && (airplane.getFuelConsumption() <= rangeTo)) {
+                    if (theMostEconomicalPlane.getFuelConsumption() > airplane.getFuelConsumption()) {
+                        theMostEconomicalPlane = airplane;
+                    }
                 }
             }
+            return theMostEconomicalPlane;
+        } else {
+            return null;
         }
-        return theMostEconomicalPlane;
     }
 }
