@@ -2,7 +2,6 @@ package taskslist4.maintask.airline;
 
 import taskslist4.maintask.airline.model.Airplane;
 import taskslist4.maintask.airline.service.impl.AirlineServiceImpl;
-
 import java.util.List;
 
 /**
@@ -13,8 +12,7 @@ public class Main {
 
     public static void main(String[] args) {
         AirlineServiceImpl service = new AirlineServiceImpl();
-        List<Airplane> airplanes = service.createAirplanesList("airplanes.txt");
-        System.out.println(service.findPlaneByFuelConsumptionRange(airplanes, 0, 1));
+        List<Airplane> airplanes = service.createAirplanesList(FILENAME);
 
     }
 }
