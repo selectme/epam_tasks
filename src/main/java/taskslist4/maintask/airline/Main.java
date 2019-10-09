@@ -16,8 +16,5 @@ public class Main {
         List<Airplane> airplanes = service.createAirplanesList("airplanes.txt");
         System.out.println(service.findPlaneByFuelConsumptionRange(airplanes, 0, 1));
 
-        String s = "123";
-
-
     }
 }
