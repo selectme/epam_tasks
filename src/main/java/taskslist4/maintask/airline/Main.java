@@ -2,6 +2,7 @@ package taskslist4.maintask.airline;
 
 import taskslist4.maintask.airline.model.Airplane;
 import taskslist4.maintask.airline.service.impl.AirlineServiceImpl;
+import java.util.ArrayList;
 import java.util.List;
 
 /**
@@ -12,7 +13,8 @@ public class Main {
 
     public static void main(String[] args) {
         AirlineServiceImpl service = new AirlineServiceImpl();
-        List<Airplane> airplanes = service.createAirplanesList(FILENAME);
+        List<Airplane> airplanes = new ArrayList<>();
+        airplanes = service.createAirplanesList(FILENAME);
 
     }
 }
