@@ -1,5 +1,7 @@
 package taskslist4.maintask.airline.model;
 
+import java.util.Objects;
+
 /**
  * Model object that represents an airplane.
  *
@@ -117,6 +119,25 @@ public abstract class Airplane extends Aircraft {
 
     public void setFuelConsumption(double fuelConsumption) {
         this.fuelConsumption = fuelConsumption;
+    }
+
+    @Override
+    public boolean equals(Object o) {
+        if (this == o) return true;
+        if (o == null || getClass() != o.getClass()) return false;
+        Airplane airplane = (Airplane) o;
+        return crewQuantity == airplane.crewQuantity &&
+                maxFlightRange == airplane.maxFlightRange &&
+                fuelSupply == airplane.fuelSupply &&
+                Double.compare(airplane.fuelConsumption, fuelConsumption) == 0 &&
+                Objects.equals(sideNumber, airplane.sideNumber) &&
+                Objects.equals(model, airplane.model) &&
+                airplaneType == airplane.airplaneType;
+    }
+
+    @Override
+    public int hashCode() {
+        return Objects.hash(sideNumber, model, airplaneType, crewQuantity, maxFlightRange, fuelSupply, fuelConsumption);
     }
 
     @Override
