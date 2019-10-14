@@ -2,16 +2,17 @@ package taskslist4.maintask.airline.service;
 
 import taskslist4.maintask.airline.model.Airplane;
 
+import java.sql.ResultSet;
 import java.util.List;
 
 /**
  * @author Viktar on 02.10.2019
  */
-public interface AirlineService {
+public interface AirlineService  {
 
     List<Airplane> createAirplanesList(String filename);
 
-    int getAirplanesQuantity(String filename);
+    int getAirplanesQuantity(List<Airplane> airplanes);
 
     int findTotalAirplanesCapacity(List<Airplane> airplanes);
 
