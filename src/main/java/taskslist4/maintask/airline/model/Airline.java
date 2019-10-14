@@ -11,6 +11,10 @@ public class Airline {
      */
     private List<Airplane> airplanes;
 
+    public Airline(List<Airplane> airplanes) {
+        this.airplanes = airplanes;
+    }
+
     public List<Airplane> getAirplanes() {
         return airplanes;
     }
