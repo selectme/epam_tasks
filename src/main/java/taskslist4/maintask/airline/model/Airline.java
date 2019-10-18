@@ -19,5 +19,4 @@ public class Airline {
         return airplanes;
     }
 
-
 }

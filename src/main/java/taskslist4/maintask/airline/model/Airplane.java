@@ -69,10 +69,6 @@ public abstract class Airplane extends Aircraft {
         return sideNumber;
     }
 
-    public void setSideNumber(String sideNumber) {
-        this.sideNumber = sideNumber;
-    }
-
     public String getModel() {
         return model;
     }
@@ -85,41 +81,22 @@ public abstract class Airplane extends Aircraft {
         return airplaneType;
     }
 
-    public void setAirplaneType(AirplaneType airplaneType) {
-        this.airplaneType = airplaneType;
-    }
-
     public int getCrewQuantity() {
         return crewQuantity;
-    }
-
-    public void setCrewQuantity(int crewQuantity) {
-        this.crewQuantity = crewQuantity;
     }
 
     public int getMaxFlightRange() {
         return maxFlightRange;
     }
 
-    public void setMaxFlightRange(int maxFlightRange) {
-        this.maxFlightRange = maxFlightRange;
-    }
-
     public int getFuelSupply() {
         return fuelSupply;
-    }
-
-    public void setFuelSupply(int fuelSupply) {
-        this.fuelSupply = fuelSupply;
     }
 
     public double getFuelConsumption() {
         return fuelConsumption;
     }
 
-    public void setFuelConsumption(double fuelConsumption) {
-        this.fuelConsumption = fuelConsumption;
-    }
 
     @Override
     public boolean equals(Object o) {
@@ -137,7 +114,11 @@ public abstract class Airplane extends Aircraft {
 
     @Override
     public int hashCode() {
-        return Objects.hash(sideNumber, model, airplaneType, crewQuantity, maxFlightRange, fuelSupply, fuelConsumption);
+        int result = 1;
+        result = result * 31 + sideNumber.hashCode();
+        result = result * 31 + model.hashCode();
+        result = result * 31 + airplaneType.hashCode();
+        return result;
     }
 
     @Override

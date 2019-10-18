@@ -30,17 +30,15 @@ public class CargoAirplane extends Airplane {
      * @param carryingCapacity1 carrying capacity of an airplane
      */
     public CargoAirplane(String sideNumber, String manufacturer, int maxSpeed, int maxAltitude, String model,
-                         AirplaneType airplaneType, int crewQuantity, int maxFlightRange, int fuelSupply, double fuelConsumption, int carryingCapacity1) {
-        super(sideNumber, manufacturer, maxSpeed, maxAltitude, model, airplaneType, crewQuantity, maxFlightRange, fuelSupply, fuelConsumption);
+                         AirplaneType airplaneType, int crewQuantity, int maxFlightRange, int fuelSupply,
+                         double fuelConsumption, int carryingCapacity1) {
+        super(sideNumber, manufacturer, maxSpeed, maxAltitude, model, airplaneType, crewQuantity, maxFlightRange,
+                fuelSupply, fuelConsumption);
         this.cargoCapacity = carryingCapacity1;
     }
 
     public int getCargoCapacity() {
         return cargoCapacity;
-    }
-
-    public void setCargoCapacity(int cargoCapacity) {
-        this.cargoCapacity = cargoCapacity;
     }
 
     @Override
@@ -53,7 +51,7 @@ public class CargoAirplane extends Airplane {
 
     @Override
     public int hashCode() {
-        return Objects.hash(cargoCapacity);
+        return super.hashCode();
     }
 
     @Override

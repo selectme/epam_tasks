@@ -30,17 +30,15 @@ public class PassengerAirplane extends Airplane {
      * @param maxPassengers   max passengers capacity of an airplane
      */
     public PassengerAirplane(String sideNumber, String manufacturer, int maxSpeed, int maxAltitude, String model,
-                             AirplaneType airplaneType, int crewQuantity, int maxFlightRange, int fuelSupply, double fuelConsumption, int maxPassengers) {
-        super(sideNumber, manufacturer, maxSpeed, maxAltitude, model, airplaneType, crewQuantity, maxFlightRange, fuelSupply, fuelConsumption);
+                             AirplaneType airplaneType, int crewQuantity, int maxFlightRange, int fuelSupply,
+                             double fuelConsumption, int maxPassengers) {
+        super(sideNumber, manufacturer, maxSpeed, maxAltitude, model, airplaneType, crewQuantity, maxFlightRange,
+                fuelSupply, fuelConsumption);
         this.maxPassengers = maxPassengers;
     }
 
     public int getMaxPassengers() {
         return maxPassengers;
-    }
-
-    public void setMaxPassengers(int maxPassengers) {
-        this.maxPassengers = maxPassengers;
     }
 
     @Override
@@ -53,7 +51,7 @@ public class PassengerAirplane extends Airplane {
 
     @Override
     public int hashCode() {
-        return Objects.hash(maxPassengers);
+        return super.hashCode();
     }
 
     @Override

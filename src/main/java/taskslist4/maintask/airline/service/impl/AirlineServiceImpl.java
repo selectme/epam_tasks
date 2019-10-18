@@ -61,93 +61,122 @@ public class AirlineServiceImpl implements AirlineService {
                 try {
                     airplaneType = AirplaneType.valueOf(characteristics[3].trim().toUpperCase());
                 } catch (IllegalArgumentException e) {
-                    throw new IllegalArgumentException("ERROR! Airplane " + sideNumber + " must be only Passenger or Cargo. Check your airplanes list ", e);
+                    throw new IllegalArgumentException("ERROR! Airplane " + sideNumber + " must be only Passenger or Cargo." +
+                            "Check your airplanes list ", e);
                 }
+
 
                 try {
                     crew = Integer.parseInt(characteristics[4].trim());
                     if (crew < 0) {
-                        throw new IllegalArgumentException("ERROR! Crew can't be less than 0 and it must be a natural number. Check the airplane number " + sideNumber);
+                        throw new IllegalArgumentException("ERROR! Crew can't be less than 0 and it must be a natural number." +
+                                " Check the airplane number " + sideNumber);
                     }
                 } catch (NumberFormatException e) {
-                    throw new IllegalArgumentException("ERROR! Crew must be a natural number. Check the airplane number " + sideNumber, e);
+                    throw new IllegalArgumentException("ERROR! Crew must be a natural number. Check the airplane number "
+                            + sideNumber, e);
                 }
+
 
                 try {
                     passengers = Integer.parseInt(characteristics[5].trim());
                     if (passengers < 0) {
-                        throw new IllegalArgumentException("ERROR! Passengers can't be less than 0 and it must be a natural number. Check the airplane number " + sideNumber);
+                        throw new IllegalArgumentException("ERROR! Passengers can't be less than 0 and it must be a natural number." +
+                                " Check the airplane number " + sideNumber);
                     } else if ((airplaneType == AirplaneType.CARGO) && (passengers > 0)) {
-                        throw new IllegalStateException("Cargo type can't have passengers. Check the airplane number " + sideNumber);
+                        throw new IllegalStateException("Cargo type can't have passengers. Check the airplane number "
+                                + sideNumber);
                     }
                 } catch (NumberFormatException e) {
-                    throw new IllegalArgumentException("ERROR! Passengers must be a natural number. Check the airplane number " + sideNumber, e);
+                    throw new IllegalArgumentException("ERROR! Passengers must be a natural number. Check the airplane number "
+                            + sideNumber, e);
                 }
+
 
                 try {
                     maxSpeed = Integer.parseInt(characteristics[6].trim());
                     if (maxSpeed < 0) {
-                        throw new IllegalArgumentException("Error! Max speed can't be negative. Check the airplane number " + sideNumber);
+                        throw new IllegalArgumentException("Error! Max speed can't be negative. " +
+                                "Check the airplane number " + sideNumber);
                     }
                 } catch (NumberFormatException e) {
-                    throw new IllegalArgumentException("ERROR! Max speed must be a positive natural number. Check the airplane number " + sideNumber);
+                    throw new IllegalArgumentException("ERROR! Max speed must be a positive natural number. " +
+                            "Check the airplane number " + sideNumber);
                 }
+
 
                 try {
                     maxAltitude = Integer.parseInt(characteristics[7].trim());
                     if (maxAltitude < 0) {
-                        throw new IllegalArgumentException("Error! Max altitude can't be negative. Check the airplane number " + sideNumber);
+                        throw new IllegalArgumentException("Error! Max altitude can't be negative. " +
+                                "Check the airplane number " + sideNumber);
                     }
                 } catch (NumberFormatException e) {
-                    throw new IllegalArgumentException("ERROR! Max altitude must be a positive natural number. Check the airplane number " + sideNumber);
+                    throw new IllegalArgumentException("ERROR! Max altitude must be a positive natural number. " +
+                            "Check the airplane number " + sideNumber);
                 }
+
 
                 try {
                     maxFlightRange = Integer.parseInt(characteristics[8].trim());
                     if (maxFlightRange < 0) {
-                        throw new IllegalArgumentException("ERROR! Max flight range can't be negative. Check the airplane number " + sideNumber);
+                        throw new IllegalArgumentException("ERROR! Max flight range can't be negative. " +
+                                "Check the airplane number " + sideNumber);
                     }
                 } catch (NumberFormatException e) {
-                    throw new IllegalArgumentException("ERROR! Max speed must be a positive natural number. Check the airplane number " + sideNumber);
+                    throw new IllegalArgumentException("ERROR! Max speed must be a positive natural number. " +
+                            "Check the airplane number " + sideNumber);
                 }
+
 
                 try {
                     fuelSupply = Integer.parseInt(characteristics[9].trim());
                     if (fuelSupply < 0) {
-                        throw new IllegalArgumentException("ERROR! Fuel supply range can't be negative. Check the airplane number " + sideNumber);
+                        throw new IllegalArgumentException("ERROR! Fuel supply range can't be negative. " +
+                                "Check the airplane number " + sideNumber);
                     }
                 } catch (NumberFormatException e) {
-                    throw new IllegalArgumentException("ERROR! Fuel supply must be a positive natural number. Check the airplane number " + sideNumber);
+                    throw new IllegalArgumentException("ERROR! Fuel supply must be a positive natural number. " +
+                            "Check the airplane number " + sideNumber);
                 }
+
 
                 try {
                     fuelConsumption = Double.parseDouble(characteristics[10].trim());
                     if (fuelConsumption < 0) {
-                        throw new IllegalArgumentException("ERROR! Fuel consumption can't be negative. Check the airplane number " + sideNumber);
+                        throw new IllegalArgumentException("ERROR! Fuel consumption can't be negative. " +
+                                "Check the airplane number " + sideNumber);
                     }
                 } catch (NumberFormatException e) {
-                    throw new IllegalArgumentException("ERROR! Fuel consumption must be a positive number. Check the airplane number " + sideNumber);
+                    throw new IllegalArgumentException("ERROR! Fuel consumption must be a positive number. " +
+                            "Check the airplane number " + sideNumber);
                 }
+
 
                 try {
                     cargoCapacity = Integer.parseInt(characteristics[11].trim());
                     if ((airplaneType == AirplaneType.PASSENGER) && (((cargoCapacity > 0) || (cargoCapacity < 0)))) {
-                        throw new IllegalArgumentException("Error! Passenger airplane does not carry cargo. Check the airplane number " + sideNumber);
+                        throw new IllegalArgumentException("Error! Passenger airplane does not carry cargo. " +
+                                "Check the airplane number " + sideNumber);
                     } else if (cargoCapacity < 0) {
-                        throw new IllegalArgumentException("ERROR! Cargo capacity can't negative it must be a natural number. Check the airplane number " + sideNumber);
+                        throw new IllegalArgumentException("ERROR! Cargo capacity can't negative it must be a natural number." +
+                                "Check the airplane number " + sideNumber);
                     }
                 } catch (NumberFormatException e) {
-                    throw new IllegalArgumentException("ERROR! Cargo capacity must be a natural number. Check the airplane number " + sideNumber);
+                    throw new IllegalArgumentException("ERROR! Cargo capacity must be a natural number. " +
+                            "Check the airplane number " + sideNumber);
                 }
 
+
                 if (airplaneType == AirplaneType.CARGO) {
-                    airplanes.add(new CargoAirplane(sideNumber, manufacturer, maxSpeed, maxAltitude, model, airplaneType, crew, maxFlightRange, fuelSupply, fuelConsumption, cargoCapacity));
+                    airplanes.add(new CargoAirplane(sideNumber, manufacturer, maxSpeed, maxAltitude, model, airplaneType,
+                            crew, maxFlightRange, fuelSupply, fuelConsumption, cargoCapacity));
                 } else {
-                    airplanes.add(new PassengerAirplane(sideNumber, manufacturer, maxSpeed, maxAltitude, model, airplaneType, crew, maxFlightRange, fuelSupply, fuelConsumption, passengers));
+                    airplanes.add(new PassengerAirplane(sideNumber, manufacturer, maxSpeed, maxAltitude, model, airplaneType,
+                            crew, maxFlightRange, fuelSupply, fuelConsumption, passengers));
                 }
             }
         }
-
         return airplanes;
     }
 
@@ -273,15 +302,14 @@ public class AirlineServiceImpl implements AirlineService {
         }
 
         List<Airplane> suitableToRangeAirplanes = new ArrayList<>();
-        for(Airplane airplane : airplanes){
-            if((airplane.getFuelConsumption() >= rangeFrom) && (airplane.getFuelConsumption() <= rangeTo)){
+        for (Airplane airplane : airplanes) {
+            if ((airplane.getFuelConsumption() >= rangeFrom) && (airplane.getFuelConsumption() <= rangeTo)) {
                 suitableToRangeAirplanes.add(airplane);
             }
         }
         suitableToRangeAirplanes.sort(new AirplaneFuelConsumptionComparator());
         return suitableToRangeAirplanes.get(0);
     }
-
 
 
     /**
