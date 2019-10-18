@@ -55,12 +55,18 @@ public class AirlineServiceImplTest {
 
     }
 
+    /**
+     * Tests for the right airplanes quantity
+     */
     @Test
     public void testGetAirplanesQuantity() {
         int airplanes = airlineService.getAirplanesQuantity(airplanesRightData);
         assertEquals(5, airplanes);
     }
 
+    /**
+     * Tests creating airplanes list from text file
+     */
     @Test
     public void testCreateAirplanesList_success() {
         List<Airplane> airplanes = airplanesRightData;
@@ -71,7 +77,9 @@ public class AirlineServiceImplTest {
         assertEquals(airplanes.get(4), airplanesTest.get(4));
     }
 
-
+    /**
+     * Tests exception throwing if received incorrect data
+     */
     @Test(expected = IllegalArgumentException.class)
     public void testCreateAirplanesList_wrongInputData() {
         airplanesWrongData = airlineService.createAirplanesList(WRONG_DATA);
@@ -83,31 +91,45 @@ public class AirlineServiceImplTest {
         assertEquals(airplanes.get(4), airplanesTest.get(4));
     }
 
+    /**
+     * Tests for the right total airplanes crew capacity
+     */
     @Test
     public void testFindTotalCrewCapacity() {
         int crews = airlineService.findTotalCrewCapacity(airplanesRightData);
         assertEquals(18, crews);
     }
 
-
+    /**
+     * Tests for the right total airplanes capacity
+     */
     @Test
     public void testFindTotalAirplanesCapacity() {
         int total = airlineService.findTotalAirplanesCapacity(airplanesRightData);
         assertEquals(816, total);
     }
 
+    /**
+     * Tests for the right total airplanes passenger capacity
+     */
     @Test
     public void testFindTotalPassengersCapacity() {
         int total = airlineService.findTotalPassengersCapacity(airplanesRightData);
         assertEquals(798, total);
     }
 
+    /**
+     * Tests for the right total airplanes carrying capacity
+     */
     @Test
     public void testFindTotalAirplanesCarryingCapacity() {
         int total = airlineService.findTotalAirplanesCarryingCapacity(airplanesRightData);
         assertEquals(440, total);
     }
 
+    /**
+     * Tests finding plane by suitable fuel consumption range
+     */
     @Test
     public void findPlaneByFuelConsumptionRange() {
         Airplane airplane = airlineService.findPlaneByFuelConsumptionRange(airplanesRightData, 100, 200);
