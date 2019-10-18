@@ -1,5 +1,6 @@
 package taskslist4.maintask.airline.service.impl;
 
+import taskslist4.maintask.airline.comparator.AirplaneFuelConsumptionComparator;
 import taskslist4.maintask.airline.model.Airplane;
 import taskslist4.maintask.airline.model.AirplaneType;
 import taskslist4.maintask.airline.model.CargoAirplane;
@@ -217,7 +218,6 @@ public class AirlineServiceImpl implements AirlineService {
      */
     public int getAirplanesQuantity(List<Airplane> airplanes) {
         return airplanes.size();
-
     }
 
     /**
@@ -272,20 +272,17 @@ public class AirlineServiceImpl implements AirlineService {
             throw new IllegalArgumentException("Range can't be negative");
         }
 
-        Airplane theMostEconomicalPlane = airplanes.get(0);
-        if ((theMostEconomicalPlane.getFuelConsumption() >= rangeFrom) && (theMostEconomicalPlane.getFuelConsumption() <= rangeTo)) {
-            for (Airplane airplane : airplanes) {
-                if ((airplane.getFuelConsumption() >= rangeFrom) && (airplane.getFuelConsumption() <= rangeTo)) {
-                    if (theMostEconomicalPlane.getFuelConsumption() > airplane.getFuelConsumption()) {
-                        theMostEconomicalPlane = airplane;
-                    }
-                }
+        List<Airplane> suitableToRangeAirplanes = new ArrayList<>();
+        for(Airplane airplane : airplanes){
+            if((airplane.getFuelConsumption() >= rangeFrom) && (airplane.getFuelConsumption() <= rangeTo)){
+                suitableToRangeAirplanes.add(airplane);
             }
-            return theMostEconomicalPlane;
-        } else {
-            return null;
         }
+        suitableToRangeAirplanes.sort(new AirplaneFuelConsumptionComparator());
+        return suitableToRangeAirplanes.get(0);
     }
+
+
 
     /**
      * Checks if text file exists
